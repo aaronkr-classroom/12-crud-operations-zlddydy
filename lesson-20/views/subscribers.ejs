@@ -1,0 +1,60 @@
+<!-- views/subscribers.ejs -->
+
+<!--
+  Listing 16.5 (p. 232)
+  구독자 목록을 보여주는 뷰
+-->
+
+<main class="">
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="pt-5 pb-5">
+      <h1>Subscribers</h1>
+      <p>Here are all the subscribers to our newsletter.</p>
+
+      <table class="table table-striped table-hover pb-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">이미지</th>
+            <th scope="col">이름</th>
+            <th scope="col">이메일</th>
+            <th scope="col">전화번호</th>
+            <th scope="col">뉴스레터 구독자</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% subscribers.forEach((s, i) => { %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td>
+              <figure class="subscriber-img">
+                <img src="<%= s.profileImg %>" />
+              </figure>
+            </td>
+            <td><%= s.name %></td>
+            <td><%= s.email %></td>
+            <td><%= s.phoneNumber %></td>
+            <td>
+              <% if (s.newsletter) { %>
+              <span class="fas fa-check">✅</span>
+              <% } else { %>
+              <span class="fas fa-times">❌</span>
+              <% } %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+
+      <div class="mt-5 mb-5 text-center">
+        <a href="/contact" class="btn btn-primary">Add New Subscriber</a>
+        <a href="/" 
+          onclick="return confirm('Are you sure you want to delete this record?')"
+          class="btn ut-red disabled"
+          role="button"
+          aria-disabled="true"
+        >🗑️ Delete All Subscribers</a>
+      </div>
+    </div>
+  </div>
+</main>
