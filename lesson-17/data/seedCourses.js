@@ -8,11 +8,13 @@ const mongoose = require("mongoose"),
   Course = require("../models/Course");
 
 // 데이터베이스 연결 설정
-mongoose.connect("mongodb://127.0.0.1:27017/ut-nodejs", {
-  useNewUrlParser: true,
+mongoose.connect(
+  "mongodb+srv://Chou:gTw5EShuWvdLnRA8@atlascluster.2xqcaun.mongodb.net/", // 데이터베이스 연결 설정", // Atlas 경로 (lesson-15)
+);
+const db = mongoose.connection;
+db.once("open", () => {
+  console.log("Connected to MOGODB!!!");
 });
-
-mongoose.connection;
 
 var courses = [
   {
@@ -98,4 +100,4 @@ setTimeout(() => {
     .catch((error) => {
       console.log(`Error: ${error}`);
     });
-}, 500);
+}, 1500);
